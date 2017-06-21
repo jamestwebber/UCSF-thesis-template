@@ -1,0 +1,10 @@
+*.aux
+*.log
+
+main.toc
+main.lof
+main.lot
+main.synctex.gz
+main.pdf
+
+titlePageExport.pdf

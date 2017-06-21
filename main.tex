@@ -1,0 +1,35 @@
+\documentclass[letterpaper,12pt,oneside,openany]{book}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{afterpage}
+
+\begin{document}
+
+\frontmatter
+% download the official title page from http://graduate.ucsf.edu/forms/
+% and fill it out, export a copy to remove the forms, and include it here
+\includepdf{titlePageExport.pdf}
+\afterpage{\thispagestyle{plain}\null\newpage}
+\include{./TeX_files/acknowledgments}
+\include{./TeX_files/abstract}
+\tableofcontents
+\listoftables
+\listoffigures
+\include{./TeX_files/introduction}
+
+\mainmatter
+\include{./TeX_files/chapter01}
+\include{./TeX_files/chapter02}
+\include{./TeX_files/chapter03}
+\include{./TeX_files/chapter04}
+\include{./TeX_files/chapter05}
+\include{./TeX_files/chapter06}
+\include{./TeX_files/chapter07}
+
+\backmatter
+% bibliography, glossary and index would go here.
+
+\include{./TeX_files/UCSF_library_form}
+\end{document}
