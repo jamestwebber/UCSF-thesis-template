@@ -5,22 +5,68 @@
 \usepackage{pdfpages}
 \usepackage{afterpage}
 
+% this is where to put figures you're including (I just made PNGs of everything)
+\graphicspath{ {figures/} }
+
+\usepackage[utf8]{inputenc}
+\usepackage[greek,ngerman,english]{babel}
+
+\usepackage[space]{grffile}
+\usepackage{latexsym}
+\usepackage{textcomp}
+\usepackage{longtable}
+\usepackage{multirow,booktabs}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{setspace}
+\usepackage{caption}
+\captionsetup[figure]{hypcap=false}
+
+\usepackage[super,comma,sort&compress]{natbib}
+
+% Add Bibliography to the table of contents
+\usepackage[nottoc]{tocbibind}
+
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[hyperfigures,breaklinks,pagebackref,hidelinks]{hyperref}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\usepackage[nameinlink]{cleveref}
+
+% code to remove things from ToC (from https://tex.stackexchange.com/questions/272070/)
+\newcommand*{\BeginNoToc}{%
+	\addtocontents{toc}{%
+		\edef\protect\SavedTocDepth{\protect\the\protect\value{tocdepth}}%
+	}%
+	\addtocontents{toc}{%
+		\protect\setcounter{tocdepth}{-10}%
+	}%
+}
+\newcommand*{\EndNoToc}{%
+	\addtocontents{toc}{%
+		\protect\setcounter{tocdepth}{\protect\SavedTocDepth}%
+	}%
+}
+
+\bibliographystyle{unsrtnat}
+\doublespacing
+
 \begin{document}
 
 \frontmatter
 % download the official title page from http://graduate.ucsf.edu/forms/
 % and fill it out, export a copy to remove the forms, and include it here
+% (or eventually the signed scanned version)
 \includepdf{titlePageExport.pdf}
 \afterpage{\thispagestyle{plain}\null\newpage}
 \include{./TeX_files/acknowledgments}
 \include{./TeX_files/abstract}
 \tableofcontents
+\BeginNoToc
 \listoftables
 \listoffigures
-\include{./TeX_files/introduction}
+\EndNoToc
 
 \mainmatter
-\include{./TeX_files/chapter01}
+\include{./TeX_files/introduction}
 \include{./TeX_files/chapter02}
 \include{./TeX_files/chapter03}
 \include{./TeX_files/chapter04}
@@ -31,5 +77,11 @@
 \backmatter
 % bibliography, glossary and index would go here.
 
-\include{./TeX_files/UCSF_library_form}
+% I named my biblatex file "biblio.bib". You're on your own with this crap.
+\bibliography{biblio}
+
+% print this out, add the right page number, sign it/scan it, then include it as pdf
+%\BeginNoToc
+\includepdf{publishing_agreement.pdf}
+%\EndNoToc
 \end{document}
